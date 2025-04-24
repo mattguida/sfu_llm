@@ -1,0 +1,263 @@
+INFO 04-24 13:32:35 config.py:510] This model supports multiple tasks: {'generate', 'score', 'classify', 'embed', 'reward'}. Defaulting to 'generate'.
+WARNING 04-24 13:32:36 config.py:588] bitsandbytes quantization is not fully optimized yet. The speed can be slower than non-quantized models.
+WARNING 04-24 13:32:36 arg_utils.py:1103] Chunked prefill is enabled by default for models with max_model_len > 32K. Currently, chunked prefill might not work with some features or models. If you encounter any issues, please disable chunked prefill by setting --enable-chunked-prefill=False.
+INFO 04-24 13:32:36 config.py:1458] Chunked prefill is enabled with max_num_batched_tokens=2048.
+INFO 04-24 13:32:36 llm_engine.py:234] Initializing an LLM engine (v0.6.6.post1) with config: model='unsloth/Meta-Llama-3.1-8B-Instruct-bnb-4bit', speculative_config=None, tokenizer='unsloth/Meta-Llama-3.1-8B-Instruct-bnb-4bit', skip_tokenizer_init=False, tokenizer_mode=auto, revision=None, override_neuron_config=None, tokenizer_revision=None, trust_remote_code=True, dtype=torch.bfloat16, max_seq_len=131072, download_dir=None, load_format=LoadFormat.BITSANDBYTES, tensor_parallel_size=1, pipeline_parallel_size=1, disable_custom_all_reduce=False, quantization=bitsandbytes, enforce_eager=False, kv_cache_dtype=auto, quantization_param_path=None, device_config=cuda, decoding_config=DecodingConfig(guided_decoding_backend='xgrammar'), observability_config=ObservabilityConfig(otlp_traces_endpoint=None, collect_model_forward_time=False, collect_model_execute_time=False), seed=0, served_model_name=unsloth/Meta-Llama-3.1-8B-Instruct-bnb-4bit, num_scheduler_steps=1, multi_step_stream_outputs=True, enable_prefix_caching=False, chunked_prefill_enabled=True, use_async_output_proc=True, disable_mm_preprocessor_cache=False, mm_processor_kwargs=None, pooler_config=None, compilation_config={"splitting_ops":["vllm.unified_attention","vllm.unified_attention_with_output"],"candidate_compile_sizes":[],"compile_sizes":[],"capture_sizes":[256,248,240,232,224,216,208,200,192,184,176,168,160,152,144,136,128,120,112,104,96,88,80,72,64,56,48,40,32,24,16,8,4,2,1],"max_capture_size":256}, use_cached_outputs=False, 
+INFO 04-24 13:32:37 selector.py:120] Using Flash Attention backend.
+INFO 04-24 13:32:38 model_runner.py:1094] Starting to load model unsloth/Meta-Llama-3.1-8B-Instruct-bnb-4bit...
+INFO 04-24 13:32:38 loader.py:1039] Loading weights with BitsAndBytes quantization.  May take a while ...
+INFO 04-24 13:32:38 weight_utils.py:251] Using model weights format ['*.safetensors']
+INFO 04-24 13:32:41 model_runner.py:1099] Loading model weights took 5.3424 GB
+INFO 04-24 13:32:41 worker.py:241] Memory profiling takes 0.45 seconds
+INFO 04-24 13:32:41 worker.py:241] the current vLLM instance can use total_gpu_memory (79.14GiB) x gpu_memory_utilization (0.90) = 71.22GiB
+INFO 04-24 13:32:41 worker.py:241] model weights take 5.34GiB; non_torch_memory takes 0.10GiB; PyTorch activation peak memory takes 1.19GiB; the rest of the memory reserved for KV Cache is 64.59GiB.
+INFO 04-24 13:32:41 gpu_executor.py:76] # GPU blocks: 33070, # CPU blocks: 2048
+INFO 04-24 13:32:41 gpu_executor.py:80] Maximum concurrency for 131072 tokens per request: 4.04x
+INFO 04-24 13:32:43 model_runner.py:1415] Capturing cudagraphs for decoding. This may lead to unexpected consequences if the model is not static. To run the model in eager mode, set 'enforce_eager=True' or use '--enforce-eager' in the CLI. If out-of-memory error occurs during cudagraph capture, consider decreasing `gpu_memory_utilization` or switching to eager mode. You can also reduce the `max_num_seqs` as needed to decrease memory usage.
+INFO 04-24 13:33:00 model_runner.py:1535] Graph capturing finished in 17 secs, took 0.64 GiB
+INFO 04-24 13:33:00 llm_engine.py:431] init engine (profile, create kv cache, warmup model) took 19.29 seconds
+Processing ID: 7874382 of type: article
+{
+    "article_id": "7874382",
+    "comment_id": null,
+    "topic": "Humanitarian Crisis in Sudan"
+}
+Processing ID: 10352910 of type: article
+{
+    "article_id": "10352910",
+    "comment_id": null,
+    "topic": "Rob Ford"
+}
+Processing ID: 11995279 of type: article
+{
+    "article_id": "11995279",
+    "comment_id": null,
+    "topic": "Mayor Rob Ford Allegations"
+}
+Processing ID: 14112165 of type: article
+{
+    "article_id": "14112165",
+    "comment_id": null,
+    "topic": "Education"
+}
+Processing ID: 14168845 of type: article
+{
+    "article_id": "14168845",
+    "comment_id": null,
+    "topic": "Education Reform"
+}
+Processing ID: 14315072 of type: article
+{
+    "article_id": "14315072",
+    "comment_id": null,
+    "topic": "US Foreign Policy in Syria"
+}
+Processing ID: 14349530 of type: article
+{
+    "article_id": "14349530",
+    "comment_id": null,
+    "topic": "Multiculturalism in Quebec"
+}
+Processing ID: 14387181 of type: article
+{
+    "article_id": "14387181",
+    "comment_id": null,
+    "topic": "Politics in Quebec"
+}
+Processing ID: 14450333 of type: article
+{
+    "article_id": "14450333",
+    "comment_id": null,
+    "topic": "Rob Ford"
+}
+Processing ID: 14692783 of type: article
+{
+    "article_id": "14692783",
+    "comment_id": null,
+    "topic": "Population Growth"
+}
+Processing ID: 8cda8044c1e64a769b6091bb297c6d77 of type: comment
+{
+    "article_id": null,
+    "comment_id": "8cda8044c1e64a769b6091bb297c6d77",
+    "topic": "Humanitarian Crises"
+}
+Processing ID: 901421f40d5d4fcba1403d9a53a28ed5 of type: comment
+{
+    "article_id": null,
+    "comment_id": "901421f40d5d4fcba1403d9a53a28ed5",
+    "topic": "Celebrity Influence on Social Causes"
+}
+Processing ID: 75e7dd6af5984c67a824fbbf799df65e of type: comment
+{
+    "article_id": null,
+    "comment_id": "75e7dd6af5984c67a824fbbf799df65e",
+    "topic": "Politics"
+}
+Processing ID: 771992_0 of type: comment
+{
+    "article_id": null,
+    "comment_id": "771992_0",
+    "topic": "Politics"
+}
+Processing ID: a8b9389c8d9643f095144dfcc4fda12a of type: comment
+{
+    "article_id": null,
+    "comment_id": "a8b9389c8d9643f095144dfcc4fda12a",
+    "topic": "Rob Ford Cocaine Scandal"
+}
+Processing ID: 0d409ea0dbf0428abf593527a9e353aa of type: comment
+{
+    "article_id": null,
+    "comment_id": "0d409ea0dbf0428abf593527a9e353aa",
+    "topic": "Rob Ford Scandal"
+}
+Processing ID: 10074bc79b764192bb0443d8a1569372 of type: comment
+{
+    "article_id": null,
+    "comment_id": "10074bc79b764192bb0443d8a1569372",
+    "topic": "Social Justice"
+}
+Processing ID: 318341ffbf8041199b8f133c13b8aae9 of type: comment
+{
+    "article_id": null,
+    "comment_id": "318341ffbf8041199b8f133c13b8aae9",
+    "topic": "celebrity right to privacy"
+}
+Processing ID: fa52c5bf4dd54a69b62617dceee3e8cc of type: comment
+{
+    "article_id": null,
+    "comment_id": "fa52c5bf4dd54a69b62617dceee3e8cc",
+    "topic": "Public Education"
+}
+Processing ID: 4391c516b118471ca5e7eb8c88e77ab4 of type: comment
+{
+    "article_id": null,
+    "comment_id": "4391c516b118471ca5e7eb8c88e77ab4",
+    "topic": "Education Reform"
+}
+Processing ID: 85b19178ff06475291c31c6b2139a446 of type: comment
+{
+    "article_id": null,
+    "comment_id": "85b19178ff06475291c31c6b2139a446",
+    "topic": "Helping Victims of Moral Obligation"
+}
+Processing ID: 847fa816ad80490b878c0ee3dadfaabf of type: comment
+{
+    "article_id": null,
+    "comment_id": "847fa816ad80490b878c0ee3dadfaabf",
+    "topic": "US Politics"
+}
+Processing ID: c2d4425f2d4c4e909289292d75fbcc66 of type: comment
+{
+    "article_id": null,
+    "comment_id": "c2d4425f2d4c4e909289292d75fbcc66",
+    "topic": "Immigration Policy"
+}
+Processing ID: b2db2c396d8046feb3a42f39f90c3d38 of type: comment
+{
+    "article_id": null,
+    "comment_id": "b2db2c396d8046feb3a42f39f90c3d38",
+    "topic": "Politics"
+}
+Processing ID: 677817_0 of type: comment
+{
+    "article_id": null,
+    "comment_id": "677817_0",
+    "topic": "Illegal Immigration"
+}
+Processing ID: 98d0c2aa454b449d8029221a7943d851 of type: comment
+{
+    "article_id": null,
+    "comment_id": "98d0c2aa454b449d8029221a7943d851",
+    "topic": "Separation of Church and State"
+}
+Processing ID: bfcb90b787c64c409df60d476158d24b of type: comment
+{
+    "article_id": null,
+    "comment_id": "bfcb90b787c64c409df60d476158d24b",
+    "topic": "Integration vs Diversity in Society"
+}
+Processing ID: 554575bf621948bebb5ea9d98b0d8aa2 of type: comment
+{
+    "article_id": null,
+    "comment_id": "554575bf621948bebb5ea9d98b0d8aa2",
+    "topic": "Immigration Policy"
+}
+Processing ID: 841395_0 of type: comment
+{
+    "article_id": null,
+    "comment_id": "841395_0",
+    "topic": "Immigration/Integration"
+}
+Processing ID: 730250_0 of type: comment
+{
+    "article_id": null,
+    "comment_id": "730250_0",
+    "topic": "Immigration Policy"
+}
+Processing ID: 295274_0 of type: comment
+{
+    "article_id": null,
+    "comment_id": "295274_0",
+    "topic": "Separation of Church and State"
+}
+Processing ID: 92ce118fe23043069154ae2cdec74d4e of type: comment
+{
+    "article_id": null,
+    "comment_id": "92ce118fe23043069154ae2cdec74d4e",
+    "topic": "Politics"
+}
+Processing ID: add2a472e17547dc8d9efcaab230f885 of type: comment
+{
+    "article_id": null,
+    "comment_id": "add2a472e17547dc8d9efcaab230f885",
+    "topic": "Cynicism"
+}
+Processing ID: 336699_0 of type: comment
+{
+    "article_id": null,
+    "comment_id": "336699_0",
+    "topic": "Politics"
+}
+Processing ID: fdbf6a657e464d819359fefb42b6a646 of type: comment
+{
+    "article_id": null,
+    "comment_id": "fdbf6a657e464d819359fefb42b6a646",
+    "topic": "Transgender Issues"
+}
+Job ID           : 8757606
+Cluster          : spartan
+User/Project     : guida/deeplearn
+Nodes            : 1
+Wall-clock time  : 00:01:02 / 01:00:00
+
+Displaying overall resources usage from 2025-04-24 13:32:19 to 2025-04-24 13:33:21:
+
+NODE            CPU#        TOT%   ( USR   / SYS   / WIO   / IDLE  ) 
+
+spartan-gpgpu141 : 
+                CPU# 1    : 24.1   (  23.0 /   1.1 /   0.0 /  75.9 ) 
+                CPU# 2    : 3.5    (   2.8 /   0.7 /   0.0 /  96.5 ) 
+                CPU# 3    : 17.3   (   9.9 /   7.4 /   0.0 /  82.7 ) 
+                CPU# 4    : 22.2   (  20.7 /   1.5 /   0.0 /  77.8 ) 
+
+                            UTIL%   MEM-USG-AVG  MEM-USG-MAX  TOT-MEM   
+                GPU# 1    : 17.0    49156.7M     73517.0M     81920.0M 
+
+
+Allocated CPUs            : 4    
+  CPUs with usage <25%    : 4    
+  CPUs with usage <50%    : 0    
+  CPUs with usage >50%    : 0    
+
+
+Allocated GPUs            : 1    
+  GPUs with usage <25%    : 1    
+  GPUs with usage <50%    : 0    
+  GPUs with usage >50%    : 0    
+
+Memory used (RAM)         : 4.2%  [5785MB of 137439MB]
+
+--------------------------------------------
+
