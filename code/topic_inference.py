@@ -12,10 +12,11 @@ import json
 import os
 import sys 
 import torch
+
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from prompts.prompts import PROMPT_TOPIC
-os.environ["HF_HUB_ENABLE_HF_TRANSFER"] = "0"
 
+os.environ["HF_HUB_ENABLE_HF_TRANSFER"] = "0"
 torch.cuda.empty_cache()
 
 class Output(BaseModel):
@@ -33,7 +34,7 @@ class TopicClassifier:
         self.dtype = dtype
         self.tokenizer = AutoTokenizer.from_pretrained(self.model_name, cache_dir=self.cache_dir)
         self.llm = LLM(model=self.model_name, dtype=self.dtype, trust_remote_code=True, quantization="bitsandbytes", load_format="bitsandbytes")
-        
+
     def load_data(self, file_paths: List[str], data_type: str):
         data = []
         for path in file_paths:
@@ -45,7 +46,7 @@ class TopicClassifier:
                 comment_df = df[['comment_id', 'comment_text', 'article_id']]
                 data.extend(comment_df.to_dict(orient="records"))
         return data
-        
+
     def classify(self, file_paths: List[str], output_schema: BaseModel, data_type: str):
         all_data = self.load_data(file_paths, data_type) 
         json_schema = output_schema.model_json_schema()
@@ -99,13 +100,20 @@ class TopicClassifier:
     def classify_comments(self, file_paths: List[str], output_schema: BaseModel):
         self.classify(file_paths, output_schema, data_type='comment')
 
-file_paths = ["/data/gpfs/projects/punim0478/guida/topic_stance_inferences/data/mock_analysis.csv"]
 
+# === PATHS ===
+file_paths = ["/data/gpfs/projects/punim0478/guida/topic_stance_inferences/data/mock_analysis.csv"]
+article_jsonl = "/data/gpfs/projects/punim0478/guida/topic_stance_inferences/output/topic_articles.jsonl"
+comment_jsonl = "/data/gpfs/projects/punim0478/guida/topic_stance_inferences/output/topic_comments.jsonl"
+final_csv_output = "/data/gpfs/projects/punim0478/guida/topic_stance_inferences/output/final_topic_annotated.csv"
+
+
+# === CLASSIFY ===
 classifier = TopicClassifier(
     model_name="unsloth/Meta-Llama-3.1-8B-Instruct-bnb-4bit",
     prompt=PROMPT_TOPIC,
-    article_output_file="/data/gpfs/projects/punim0478/guida/topic_stance_inferences/output/topic_articles.jsonl",  
-    comment_output_file="/data/gpfs/projects/punim0478/guida/topic_stance_inferences/output/topic_comments.jsonl",
+    article_output_file=article_jsonl,
+    comment_output_file=comment_jsonl,
     cache_dir="/data/gpfs/projects/punim0478/guida"
 )
 
@@ -113,3 +121,19 @@ classifier.classify_articles(file_paths, Output)
 classifier.classify_comments(file_paths, Output)
 
 torch.cuda.empty_cache()
+
+# === POSTPROCESSING: Merge and Output Final CSV ===
+df = pd.read_csv(file_paths[0])
+
+def load_topics(jsonl_path, id_field):
+    with jl.open(jsonl_path) as reader:
+        return {entry[id_field]: entry["topic"] for entry in reader}
+
+article_topics = load_topics(article_jsonl, "article_id")
+comment_topics = load_topics(comment_jsonl, "comment_id")
+
+df["article_topic"] = df["article_id"].astype(str).map(article_topics)
+df["comment_topic"] = df["comment_id"].astype(str).map(comment_topics)
+
+df.to_csv(final_csv_output, index=False)
+print(f"Final topic-annotated file saved to: {final_csv_output}")
