@@ -17,7 +17,7 @@ module load cuDNN/8.9.3.28-CUDA-12.2.0
 
 conda activate /data/gpfs/projects/punim0478/guida/unsloth_env
 
-python3 /data/gpfs/projects/punim0478/guida/topic_stance_inferences/code/topic_inference.py --dtype=bfloat16
+python3 /data/gpfs/projects/punim0478/guida/topic_stance_inferences/code/topic_stance_inference.py --dtype=bfloat16
 
 ##DO NOT ADD/EDIT BEYOND THIS LINE##
 ##Job monitor command to list the resource usage

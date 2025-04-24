@@ -1,24 +1,17 @@
-PROMPT_TOPIC = """
-You are a helpful assistant. Your task is to read the given text and identify its main topic. The topic should be a broad category as a nominal phrase (e.g. 'Gay Marriage', 'Climate Change', 'Gun Control', etc.).
+PROMPT_TOPIC_STANCE = """
+You are a helpful assistant. Your task is to read the given {content_type} and:
+1. Identify its main topic as a broad category in a nominal phrase (e.g. "Climate Change", "Gun Control", "Immigration", etc.).
+2. Identify the stance taken in the {content_type} **on that topic**. The stance should be one of:
+   - "Pro"
+   - "Against"
+   - "Neutral"
 
 Return the result in the following JSON format:
 
 {{
-  "article_id": "{unique_id}", # Use this exact ID in your response
-  "topic": "<Insert topic here>" # The main topic of the text
-}}
-
-Only return the JSON. Do not include any explanation.
-"""
-
-PROMPT_STANCE = """
-You are a helpful assistant. Your task is to read the given text and identify the main stance towards the topic. The stance should be one of the following three categories: 'Pro', 'Con', or 'Neutral'.
-
-Return the result in the following JSON format:
-
-{{
-  "article_id": "{unique_id}", # Use this exact ID in your response
-  "topic": "<Insert topic here>" # The main topic of the text
+  "{content_type}_id": "{unique_id}", 
+  "topic": "<Insert topic here>",
+  "stance": "<Insert stance here>" 
 }}
 
 Only return the JSON. Do not include any explanation.
